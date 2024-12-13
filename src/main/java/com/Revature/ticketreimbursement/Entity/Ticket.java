@@ -1,33 +1,42 @@
-package com.Revature.TicketReimbursement.Entity;
-// package com.Revature.ticketreimbursement.Entity;
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.Id;
-// import jakarta.persistence.JoinColumn;
-// import jakarta.persistence.ManyToOne;
-// import lombok.*;
+package com.revature.TicketReimbursement.Entity;
+import com.revature.TicketReimbursement.Entity.Employee;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.*;
 
-// @Entity
-// @Data public class Ticket {
+@Entity
+@Table(name = "ticket")
+@Data public class Ticket {
     
-//     @Id
-//     @GeneratedValue(strategy=GenerationType.AUTO)
-//     private Long id;
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long id;
 
-//     @ManyToOne // Assuming one employee can have many tickets
-//     @JoinColumn(name = "username", nullable = false)
-//     private Employee Employee;
-//     private String description;
-//     private String status;
-//     private double amount;
+    @ManyToOne // Assuming one employee can have many tickets
+    @JoinColumn(name = "username", nullable = false)
+    private Employee employee;
 
-//     public Ticket(Employee Employee, String description, String status, double amount)
-//     {
-//         this.Employee=Employee;
-//         this.description=description;
-//         this.status=status;
-//         this.amount = amount;
-//     }
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "status")
+    private String status;
+
+    @Column(name = "amount")
+    private double amount;
+
+    public Ticket(Employee employee, String description, String status, double amount)
+    {
+        this.employee=employee;
+        this.description=description;
+        this.status=status;
+        this.amount = amount;
+    }
     
-// }
+}

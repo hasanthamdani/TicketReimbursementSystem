@@ -1,19 +1,25 @@
-package com.Revature.TicketReimbursement.Entity;
-// package com.Revature.ticketreimbursement.Entity;
+package com.revature.TicketReimbursement.Entity;
 
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.Id;
-// import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.*;
 
-// @Entity
-// @NoArgsConstructor
-// @AllArgsConstructor
+@Entity
+@Table(name="employee")
+@NoArgsConstructor
+@AllArgsConstructor
 
-// @Data public class Employee {
-//     @Id
-//     private String username;
-//     private String password;
-//     private boolean isManager;
+@Data public class Employee {
+    @Id
+    private String username;
+
+    @Column(name = "password")
+    private String password;
     
-// }
+    @Column(name = "isManager")
+    private boolean isManager;
+    
+}
 

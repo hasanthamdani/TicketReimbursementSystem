@@ -1,4 +1,4 @@
-package com.Revature.TicketReimbursement;
+package com.revature.TicketReimbursement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
