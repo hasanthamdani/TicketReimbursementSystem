@@ -1,13 +1,13 @@
-package com.Revature.ticketreimbursement;
+package com.Revature.TicketReimbursement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TicketreimbursementApplication {
+public class TicketReimbursementApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TicketreimbursementApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(TicketReimbursementApplication.class, args);
+  }
 
 }

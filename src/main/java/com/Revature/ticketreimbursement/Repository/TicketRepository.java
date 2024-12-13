@@ -1,26 +1,27 @@
-package com.Revature.ticketreimbursement.Repository;
+package com.Revature.TicketReimbursement.Repository;
+// package com.Revature.ticketreimbursement.Repository;
 
-import java.util.List;
-import java.util.Optional;
+// import java.util.List;
+// import java.util.Optional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+// import org.springframework.data.jpa.repository.JpaRepository;
+// import org.springframework.data.jpa.repository.Query;
+// import org.springframework.data.repository.query.Param;
+// import org.springframework.stereotype.Repository;
 
-import com.Revature.ticketreimbursement.Entity.Ticket;
+// import com.Revature.ticketreimbursement.Entity.Ticket;
 
-@Repository
-public interface TicketRepository extends JpaRepository<Ticket, Long>{
+// @Repository
+// public interface TicketRepository extends JpaRepository<Ticket, Long>{
 
-    // For the Employee
-    List<Optional<Ticket>> findByEmployee_Username(String username);
+//     // For the Employee
+//     List<Optional<Ticket>> findByEmployee_Username(String username);
 
-    // For the Manager
-    @Query("SELECT t FROM Ticket t WHERE LOWER(t.status) = LOWER(:status)")
-    List<Ticket> findAllByStatusIgnoreCase(@Param("status") String status);
+//     // For the Manager
+//     @Query("SELECT t FROM Ticket t WHERE LOWER(t.status) = LOWER(:status)")
+//     List<Ticket> findAllByStatusIgnoreCase(@Param("status") String status);
 
 
     
 
-}
+// }
