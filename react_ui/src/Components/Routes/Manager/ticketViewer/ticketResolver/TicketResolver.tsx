@@ -38,9 +38,9 @@ function TicketResolver(prop: TicketResolverProp) {
       <p><strong>Issue Description:  </strong> {ticket?.description}</p>
       <p><strong>Ticket Status: </strong> {prop.status}</p>
       <p><strong>Amount for Recompensation </strong> ${ticket?.amount}</p>
-      <button id = "acceptButton" onClick = {prop.changeStatus}>Accept Request</button>
-      <button id = "denyButton" onClick = {prop.changeStatus}>Deny Request </button>
-      <button id = "leaveButton" onClick = {prop.changeStatus}>Leave </button>
+      <button className="btn btn-outline-secondary" id = "acceptButton" onClick = {prop.changeStatus}>Accept Request</button>
+      <button className="btn btn-outline-secondary"id = "denyButton" onClick = {prop.changeStatus}>Deny Request </button>
+      <button className="btn btn-outline-secondary" id = "leaveButton" onClick = {prop.changeStatus}>Leave </button>
     </div>
   )
 }

@@ -7,23 +7,34 @@ function TicketCreator(prop : TicketCreatorTypeProp) {
     /*
       htmlForm htmlFor 
     */
-    <div>
-      <form ref = {prop.ref} onSubmit={prop.handleForm} id = "createForm">
-      <div className="htmlForm-group">
-        <label htmlFor="examplehtmlFormControlInput1">amount for Reimbursement</label> <br/>
-
-        <input type="text" inputMode='numeric' className="htmlForm-control" id="examplehtmlFormControlInput1" placeholder="$" onChange = {(e:any) => prop.setAmount(e.target.value as number)} required/>
-
+    <form ref={prop.ref} onSubmit={prop.handleForm} id="createForm">
+      <div className="form-group">
+        <h1>Submit Your Ticket</h1> {/* Heading placed on top */}
+        <div className="form-group">
+          <label htmlFor="examplehtmlFormControlInput1">Amount for Reimbursement</label><br />
+          <input
+            type="text"
+            inputMode="numeric"
+            className="htmlForm-control"
+            id="examplehtmlFormControlInput1"
+            placeholder="$"
+            onChange={(e) => prop.setAmount(Number(e.target.value))}
+            required/>
+        </div>
+        <div className="form-group">
+          <label htmlFor="examplehtmlFormControlTextarea1">Description of Issue</label><br />
+          <textarea
+            onChange={(e) => prop.setDescription(e.target.value)}
+            className="htmlForm-control"
+            id="examplehtmlFormControlTextarea1"
+            rows={5}
+            placeholder="Discuss reasoning for ticket"
+            required
+          ></textarea><br />
+          <button type="submit">Submit Ticket</button>
+        </div>
       </div>
-
-        <label htmlFor="examplehtmlFormControlTextarea1">Description of Issue</label><br/>
-        
-        <textarea onChange = {(e:any) => prop.setDescription(e.target.value)} className="htmlForm-control" id="examplehtmlFormControlTextarea1" rows={5} placeholder="Discuss reasoning for ticket" required></textarea> <br/>
-
-        <button type = "submit">Submit Ticket</button>  
-
-      </form>
-    </div>
+    </form>
   )
 }
 

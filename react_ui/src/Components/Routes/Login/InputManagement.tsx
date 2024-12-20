@@ -74,7 +74,6 @@ function InputManagement() {
   return (
     <>
     <div id = "homediv">
-        <header id="loginTitle"><strong>Ticket Reimbursement</strong></header>
         <InputForm username={username} setUsername={setUsername} password = {password} setPassword = {setPassword} handleForm = {handleForm}/>
     </div>
       

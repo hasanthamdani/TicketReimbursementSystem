@@ -59,11 +59,11 @@ function SmartCreator() {
     
     return (
         <>
-        <div id = "creatediv">
-            <header id="ticketCreate"><strong>Create Ticket</strong></header>
+        <div id = "createContanier">
             <TicketCreator ref = {form} amount = {amount} setAmount = {setAmount} description = {description} setDescription = {setDescription} handleForm = {handleForm}/>
+            {sent && <p>Your ticket ID # is {ticket?.id}</p>}
         </div>
-          {sent && <p>Your ticket ID # is {ticket?.id}</p>}
+          
         </>
       );
 }

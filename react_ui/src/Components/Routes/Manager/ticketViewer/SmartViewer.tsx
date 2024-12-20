@@ -27,8 +27,8 @@ function SmartViewer() {
 
   return (
     <>
-        <button onClick={getList}>View All Pending Tickets</button>
-        <table className="table table-striped-columns">
+        <button className="btn btn-primary btn-lg btn-block" onClick={getList}>View All Pending Tickets</button>
+        <table className="table table-hover">
             <thead>
                 <tr>
                     <th>Username</th>
