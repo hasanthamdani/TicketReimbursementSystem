@@ -2,7 +2,7 @@ import React, { FormEventHandler, MouseEventHandler } from 'react'
 
 // Access State from Management Application, Return Values on Submit
 
-type InputFormTypeProp = {username: string, password: string, setUsername: React.Dispatch<React.SetStateAction<string>>, setPassword: React.Dispatch<React.SetStateAction<string>>, handleForm:MouseEventHandler<HTMLButtonElement>}
+type InputFormTypeProp = {username: string, password: string, setUsername: React.Dispatch<React.SetStateAction<string>>, setPassword: React.Dispatch<React.SetStateAction<string>>, handleForm:MouseEventHandler<HTMLButtonElement>,errorMessage: string | null}
 
 function InputForm(prop : InputFormTypeProp) {
   return (
@@ -30,9 +30,9 @@ function InputForm(prop : InputFormTypeProp) {
 
         <button className="btn btn-lg btn-primary btn-block" type="submit" id = "login" onClick = {prop.handleForm}>Sign in</button>
         <button className="btn btn-lg btn-primary btn-block" type="submit" id = "register" onClick = {prop.handleForm}>Register</button>
-        <p className="mt-5 mb-3 text-muted">© 2017-2018</p>
       <div style={{all: "initial"}} className="quick-apply-extension-root"></div>
       </form>
+        <p>{prop.errorMessage}</p>
         </div>
       
 

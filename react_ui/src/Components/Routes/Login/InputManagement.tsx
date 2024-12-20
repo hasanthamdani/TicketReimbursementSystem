@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function InputManagement() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
   //Set State for Consistency inside React Functional Component
@@ -23,7 +24,7 @@ function InputManagement() {
     //login
     if(!username || !password)
       {
-        alert("Your form is empty");
+        setErrorMessage("Your form is empty");
       }
     else
     {
@@ -35,6 +36,7 @@ function InputManagement() {
           console.log(response.data);
           login(username, password, response.data.manager);
           console.log("login success");
+          setErrorMessage("login success");
           // Need to incorporate into routes to navigate to navbar. 
           navigate("/");
           
@@ -45,7 +47,7 @@ function InputManagement() {
           {
               console.log(error.status);
           }
-          console.log('Error: ' + error.message + " Status: " + error.status);
+          setErrorMessage('Error: Incorrect login information');
         }
       }
 
@@ -60,13 +62,14 @@ function InputManagement() {
             headers:{"Content-Type": "application/json"}
             })
           register(username, password);
-          console.log("registration success");
+          setErrorMessage("registration success");
           navigate("/");
 
         }
         catch(error)
         {
-          console.error(error);
+          setErrorMessage('Error: Incorrect registration information');
+
         }
     }
   }
@@ -74,7 +77,7 @@ function InputManagement() {
   return (
     <>
     <div id = "homediv">
-        <InputForm username={username} setUsername={setUsername} password = {password} setPassword = {setPassword} handleForm = {handleForm}/>
+        <InputForm username={username} setUsername={setUsername} password = {password} setPassword = {setPassword} handleForm = {handleForm} errorMessage = {errorMessage}/>
     </div>
       
     </>

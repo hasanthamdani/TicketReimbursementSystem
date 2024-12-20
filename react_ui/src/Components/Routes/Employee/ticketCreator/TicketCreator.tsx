@@ -1,6 +1,6 @@
 import React, { FormEventHandler } from 'react'
 
-type TicketCreatorTypeProp = {amount : number, description: string, setAmount: React.Dispatch<React.SetStateAction<number>>, setDescription: React.Dispatch<React.SetStateAction<string>>, handleForm:FormEventHandler<HTMLFormElement>, ref: React.Ref<HTMLFormElement>}
+type TicketCreatorTypeProp = {amount : number, description: string, setAmount: React.Dispatch<React.SetStateAction<number>>, setDescription: React.Dispatch<React.SetStateAction<string>>, handleForm:FormEventHandler<HTMLFormElement>, ref: React.Ref<HTMLFormElement>, errorMessage: String}
 
 function TicketCreator(prop : TicketCreatorTypeProp) {
   return (
@@ -33,6 +33,7 @@ function TicketCreator(prop : TicketCreatorTypeProp) {
           ></textarea><br />
           <button type="submit">Submit Ticket</button>
         </div>
+        <p>{prop.errorMessage}</p>
       </div>
     </form>
   )

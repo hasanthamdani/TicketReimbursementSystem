@@ -1,72 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import TicketResolver from './TicketResolver';
 import axios from 'axios';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Ticket } from '../../../Employee/ticketCreator/SmartCreator';
 
 function SmartResolver() {
-  const [ticket, setTicket] = useState<Ticket | undefined>(undefined);
-  const { id } = useParams();
-  const [redirect, setRedirect] = useState(false);  // To handle redirection
-  const navigate = useNavigate();  // useNavigate for programmatic navigation
+  const { ticketId } = useParams();
+  const [redirect, setRedirect] = useState(false);
+  const navigate = useNavigate();
 
-  // Function to change ticket status
-  async function changeStatus(e: any) {
-    let newStatus: "accept" | "deny" | "pending" = "pending";  // Default to "pending"
+  // Need to redo all of the work for the resolver
 
-    // Determine status based on button clicked
-    if ("acceptButton" === e.target.id) {
-      newStatus = "accept";
-    } else if ("denyButton" === e.target.id) {
-      newStatus = "deny";
-    } else if ("leaveButton" === e.target.id) {
-      newStatus = "pending";
+  async function changeStatus(e: React.MouseEvent<HTMLButtonElement>) {
+    let newStatus: "accept" | "deny" | "pending" = "pending";
+    if(e.target === document.getElementById("acceptButton"))
+    {
+        newStatus = "accept";
+        console.log(newStatus);
+
+        try {
+          const response = await axios.patch(
+            `http://localhost:8080/manager/tickets?ticketId=${ticketId}&status=${newStatus}`,
+            {},
+            { headers: { "Content-Type": "application/json" } }
+          );
+          console.log(response.data);
+    
+    
+        } catch (error: any) {
+          console.error("Error changing status:", error);
+        }
+        setRedirect(true);
+    }
+    else if(e.target === document.getElementById("denyButton"))
+    {
+        newStatus = "deny"
+        console.log(newStatus);
+
+        try {
+          const response = await axios.patch(
+            `http://localhost:8080/manager/tickets?ticketId=${ticketId}&status=${newStatus}`,
+            {},
+            { headers: { "Content-Type": "application/json" } }
+          );
+          console.log(response.data);
+    
+    
+        } catch (error: any) {
+          console.error("Error changing status:", error);
+        }
+        setRedirect(true);
+    }
+    else if(e.target === document.getElementById("leaveButton"))
+    {
+      setRedirect(true);
     }
 
-    try {
-      // Send PATCH request to update the status on the backend
-      const response = await axios.patch(
-        `http://localhost:8080/manager/tickets?ticketId=${id}&status=${newStatus}`,
-        {},  // Empty body, we only need the query parameters
-        { headers: { "Content-Type": "application/json" } }
-      );
-
-      console.log("Updated ticket:", response.data);  // Log the response for debugging
-
-      // Check if the backend returned an updated ticket
-      if (response.data) {
-        setTicket(response.data);  // Update the state with the updated ticket
-      }
-
-      // If the status is set to 'pending' or 'leave' button was clicked, redirect to /view
-      if (newStatus === "pending" || e.target.id === "leaveButton") {
-        setRedirect(true);  // Trigger redirection when "leaveButton" is clicked or status is pending
-      } else {
-        // If the status was updated successfully, navigate back to the tickets view
-        navigate("/view");
-      }
-    } catch (error: any) {
-      if (error.response) {
-        console.error("Response error:", error.response.data);  // Server responded with an error
-      } else if (error.request) {
-        console.error("Request error:", error.request);  // No response received
-      } else {
-        console.error("Error:", error.message);  // Something went wrong setting up the request
-      }
-    }
   }
 
-  // If redirect is triggered, render the Navigate component
-  if (redirect) {
-    return <Navigate to="/view" />;
+  if(redirect)
+  {
+    navigate('/view');
   }
 
   return (
     <div>
-      <TicketResolver
-        status={ticket?.status || "pending"}  // If ticket exists, use its status
-        changeStatus={changeStatus}
-      />
+       (
+        <TicketResolver
+          changeStatus={changeStatus}
+        />
+      )
     </div>
   );
 }

@@ -113,10 +113,11 @@ public class TicketReimbursementController {
         return ResponseEntity.status(200).body(employeeTickets);
     }
 
-    @PatchMapping("manager/tickets/")
+    @PatchMapping("manager/tickets")
     public ResponseEntity<Integer> updateStatusHandler(@RequestParam Long ticketId, @RequestParam String status)
     {
         int numUpdated = ticketService.updateTicketStatus(status, ticketId);
+        log.info(String.valueOf(numUpdated));
         return ResponseEntity.status(200).body(numUpdated);
     }
 

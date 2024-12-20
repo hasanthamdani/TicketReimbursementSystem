@@ -34,10 +34,7 @@ function TicketReimbursement() {
           
           {/* Parent Route for SmartViewer */}
           <Route path="/view" element={<RouteGuard><SmartViewer /></RouteGuard>} />
-
-          {/* Separate Route for SmartResolver (with the dynamic ticket ID) */}
-          <Route path="/view/:id" element={<RouteGuard><SmartResolver /></RouteGuard>} />
-          
+          <Route path="/view/:ticketId" element={<RouteGuard><SmartResolver /></RouteGuard>} />
           <Route path="/create" element={<RouteGuard><SmartCreator /></RouteGuard>} />
           <Route path="/history" element={<RouteGuard><SmartHistory /></RouteGuard>} />
           <Route path="/logout" element={<Logout />} />

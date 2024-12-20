@@ -1,48 +1,44 @@
-import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Ticket } from '../../../Employee/ticketCreator/SmartCreator'
+import React, { useEffect, useState } from 'react';
+import { Ticket } from '../../../Employee/ticketCreator/SmartCreator';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-type TicketResolverProp = {
-  status: string | undefined,
-  changeStatus: (event : any) => void
-  
-} 
-function TicketResolver(prop: TicketResolverProp) {
-  const [ticket, setTicket] = useState<Ticket | undefined>(undefined)
-  const { id } = useParams();
+type TicketResolverProps = {
+  changeStatus: (event: React.MouseEvent<HTMLButtonElement>) => void,
+};
 
-  async function getTicket ()
-    {
-        try
-        {
-          console.log(id);
-          const response = await axios.get("http://localhost:8080/ticket/"+id);
+function TicketResolver(prop: TicketResolverProps) {
+  const [ticket, setTicket] = useState<Ticket | undefined>(undefined);
+  const {ticketId} = useParams();
 
-          console.log("Ticket");
+  useEffect(() => {
+        const response = axios.get(`http://localhost:8080/ticket/${ticketId}`);
+
+        response.then( (response) => {
           console.log(response.data);
+          console.log("Ticket data fetched", response.data);
           setTicket(response.data);
-        }
-        catch(error)
-        {
-          console.error(error);
-        }
-    };
-  
+      }
+      ).catch( (error)=>{
+        console.error("Error fetching ticket:", error);
+      })
+    }, [])
+    console.log(ticket);
 
   return (
     <div>
-      <button onClick={getTicket}>Render</button>
-      <p><strong>Ticket ID:</strong> {id}</p> <br/>
+      <p><strong>Ticket ID:</strong> {ticket?.id}</p>
       <p><strong>Employee Username: </strong> {ticket?.employee?.username}</p>
-      <p><strong>Issue Description:  </strong> {ticket?.description}</p>
-      <p><strong>Ticket Status: </strong> {prop.status}</p>
-      <p><strong>Amount for Recompensation </strong> ${ticket?.amount}</p>
-      <button className="btn btn-outline-secondary" id = "acceptButton" onClick = {prop.changeStatus}>Accept Request</button>
-      <button className="btn btn-outline-secondary"id = "denyButton" onClick = {prop.changeStatus}>Deny Request </button>
-      <button className="btn btn-outline-secondary" id = "leaveButton" onClick = {prop.changeStatus}>Leave </button>
+      <p><strong>Issue Description: </strong> {ticket?.description}</p>
+      <p><strong>Ticket Status: </strong> {ticket?.status}</p>
+      <p><strong>Amount for Recompensation: </strong> ${ticket?.amount}</p>
+
+      {/* Buttons to change the ticket status */}
+      <button id="acceptButton" onClick={prop.changeStatus}>Accept Request</button>
+      <button id="denyButton" onClick={prop.changeStatus}>Deny Request</button>
+      <button id="leaveButton" onClick={prop.changeStatus}>Leave</button>
     </div>
-  )
+  );
 }
 
-export default TicketResolver
+export default TicketResolver;

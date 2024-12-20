@@ -18,6 +18,7 @@ function SmartCreator() {
     const [sent, setSent] = useState(false);
     const {employee} =  useAuth();
     const [ticket, setTicket] = useState<Ticket | undefined>(undefined);
+    const [errorMessage, setErrorMessage] = useState("");
     const form = useRef<HTMLFormElement>(null); //useRef 
 
     async function handleForm(event : React.FormEvent)
@@ -26,7 +27,7 @@ function SmartCreator() {
             // Create Ticket and Return ID
             if(!amount || !description || amount <= 0)
             {
-                alert("Form is incomplete, all info is needed");
+                setErrorMessage("Form is incomplete, all info is needed");
             }
             else{
                 console.log(amount);
@@ -39,7 +40,7 @@ function SmartCreator() {
 
               console.log(response.data);
               console.log(amount);
-              console.log("Ticket Submission");
+              setErrorMessage("Ticket Submission");
 
               setSent(true);
               
@@ -49,7 +50,7 @@ function SmartCreator() {
             }
             catch(error)
             {
-              console.error(error);
+              setErrorMessage("Error: Ticket is invalid");
             }
           }
             
@@ -60,7 +61,7 @@ function SmartCreator() {
     return (
         <>
         <div id = "createContanier">
-            <TicketCreator ref = {form} amount = {amount} setAmount = {setAmount} description = {description} setDescription = {setDescription} handleForm = {handleForm}/>
+            <TicketCreator ref = {form} amount = {amount} setAmount = {setAmount} description = {description} setDescription = {setDescription} handleForm = {handleForm} errorMessage = {errorMessage}/>
             {sent && <p>Your ticket ID # is {ticket?.id}</p>}
         </div>
           

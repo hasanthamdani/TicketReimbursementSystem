@@ -1,5 +1,6 @@
-import React, { MouseEventHandler } from 'react'
+import React, { MouseEventHandler, useEffect } from 'react'
 import { Link, Navigate } from 'react-router-dom';
+import axios from 'axios'
 
 type ticketViewerProp = {
   id: number | undefined,
