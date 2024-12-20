@@ -5,14 +5,15 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.revature.TicketReimbursement.Entity.Employee;
 import com.revature.TicketReimbursement.Entity.Ticket;
 import com.revature.TicketReimbursement.Repository.TicketRepository;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 
 @Service
 @AllArgsConstructor
+@Log
 public class TicketService {
 
     private TicketRepository ticketRepository;
@@ -24,15 +25,23 @@ public class TicketService {
     public Ticket createTicket(Ticket t)
     {
         // The React App will format the JSON correctly
-        return ticketRepository.save(t);
+        
+        Ticket t_saved = ticketRepository.save(t);
+        log.info(t_saved.toString());
+        return t_saved;
+    }
+
+    public Optional<Ticket> findTicket(long id)
+    {
+        return ticketRepository.findById(id);
     }
     public List<Ticket> viewAllPendingTickets()
     {   
         return ticketRepository.findAllPending();
     }
-    public List<Ticket> viewEmployeeTickets(Employee emp)
+    public List<Ticket> viewEmployeeTickets(String username)
     {
-        return ticketRepository.findByEmployee_Username(emp.getUsername());
+        return ticketRepository.findByEmployee_Username(username);
     }
     public int updateTicketStatus(String status, Long Id)
     {

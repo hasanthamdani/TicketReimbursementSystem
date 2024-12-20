@@ -16,3 +16,13 @@
   grid-column:2;
   grid-row:2;
 }
+
+
+input:valid {
+  border: 2px solid black;
+}
+
+form {
+  font: 1em sans-serif;
+  max-width: 320px;
+}

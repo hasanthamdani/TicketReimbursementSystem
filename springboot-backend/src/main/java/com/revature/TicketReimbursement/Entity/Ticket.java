@@ -1,5 +1,4 @@
 package com.revature.TicketReimbursement.Entity;
-import com.revature.TicketReimbursement.Entity.Employee;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,9 +13,9 @@ import lombok.*;
 @Table(name = "ticket")
 @Data public class Ticket {
     
-    @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    @Id
+    private long id;
 
     @ManyToOne // Assuming one employee can have many tickets
     @JoinColumn(name = "username", nullable = false)
@@ -31,6 +30,7 @@ import lombok.*;
     @Column(name = "amount")
     private double amount;
 
+    public Ticket() {}
     public Ticket(Employee employee, String description, String status, double amount)
     {
         this.employee=employee;

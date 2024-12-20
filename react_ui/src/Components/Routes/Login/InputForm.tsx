@@ -8,11 +8,11 @@ function InputForm(prop : InputFormTypeProp) {
   return (
          <form className = "inputForm">
               <label className = "inputMain" htmlFor = "username">Username: </label> <br/>
-              <input className = "inputMain" type = "text" value = {prop.username} onChange={(e:any) => prop.setUsername(e.target.value)}>
+              <input className = "inputMain" type = "text" value = {prop.username} onChange={(e:any) => prop.setUsername(e.target.value)} required>
               </input> <br/>
 
               <label className = "inputMain" htmlFor="password">Pasword:</label><br/>
-              <input className = "inputMain" type = "password" value = {prop.password} onChange = {(e:any) => prop.setPassword(e.target.value)}></input>
+              <input className = "inputMain" type = "password" value = {prop.password} onChange = {(e:any) => prop.setPassword(e.target.value)}required></input>
                 <br/>
                 <br/>
             <span>
