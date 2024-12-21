@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,6 +32,23 @@ public class EmployeeServiceTest {
     @InjectMocks
     private EmployeeService employeeService;
 
+    @Test
+    public void testAccountExists()
+    {
+        String username = "";
+        when(employeeRepository.existsById(username)).thenReturn(true);
+        Assertions.assertTrue(employeeService.accountExists(username));
+        verify(employeeRepository, times(1)).existsById(username);
+    }
+
+    @Test
+    public void testAccountExistsFail()
+    {
+        String username = "";
+        when(employeeRepository.existsById(username)).thenReturn(false);
+        Assertions.assertFalse(employeeService.accountExists(username));
+        verify(employeeRepository, times(1)).existsById(username);
+    }
     @Test
     public void testNewRegister()
     {
@@ -86,8 +104,32 @@ public class EmployeeServiceTest {
     }
     //
 
-    /*
-     * All other methods are simply returning repostiory methods that have been tested.
-     */
+    @Test
+    public void testFindAccount()
+    {
+        
+    Optional<Employee> emp = Optional.of(new Employee("username", "password", false));
+        
+    // Instructs mock what to do
+    when(employeeRepository.findById(emp.get().getUsername())).thenReturn(emp);
+
+    assertEquals(emp, (employeeService.findAccount(emp.get().getUsername())));
+
+    verify(employeeRepository, times(1)).findById(emp.get().getUsername());
+    }
+
+    @Test
+    public void testFindAccountFail()
+    {
+        
+    Employee emp = new Employee("username", "password", false);
+        
+    // Instructs mock what to do
+    when(employeeRepository.findById(emp.getUsername())).thenReturn(Optional.empty());
+
+    assertEquals(Optional.empty(), (employeeService.findAccount(emp.getUsername())));
+
+    verify(employeeRepository, times(1)).findById(emp.getUsername());
+    }
 
 }

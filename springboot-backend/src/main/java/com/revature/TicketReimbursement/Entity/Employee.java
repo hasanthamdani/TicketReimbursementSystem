@@ -10,7 +10,7 @@ import lombok.*;
 @Table(name="employee")
 @NoArgsConstructor
 @AllArgsConstructor
-
+@Generated
 @Data public class Employee {
     @Id
     private String username;

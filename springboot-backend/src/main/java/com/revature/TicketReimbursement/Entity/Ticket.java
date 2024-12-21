@@ -11,6 +11,7 @@ import lombok.*;
 
 @Entity
 @Table(name = "ticket")
+@Generated
 @Data public class Ticket {
     
     @GeneratedValue(strategy=GenerationType.AUTO)

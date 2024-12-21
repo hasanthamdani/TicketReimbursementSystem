@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import com.revature.TicketReimbursement.Entity.Employee;
 import com.revature.TicketReimbursement.Repository.EmployeeRepository;
 
+import jakarta.annotation.Generated;
+
+
 @Component
 public class DataLoader implements CommandLineRunner {
 

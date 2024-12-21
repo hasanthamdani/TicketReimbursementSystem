@@ -28,14 +28,20 @@ import lombok.extern.java.Log;
 
 @RestController
 @ResponseBody
-@AllArgsConstructor
 @Log
 @CrossOrigin(origins = "http://localhost:3000")
 public class TicketReimbursementController {
-    
-    @Autowired
+
     private TicketService ticketService;
     private EmployeeService employeeService;
+    
+    @Autowired
+    public TicketReimbursementController(TicketService ticketService, EmployeeService employeeService)
+    {
+        this.ticketService = ticketService;
+        this.employeeService = employeeService;
+    } 
+    
 
     /*
     * Account Registration
@@ -47,16 +53,17 @@ public class TicketReimbursementController {
     ONLY EMPLOYEES
     */
 
-    @PostMapping("register")
+    @PostMapping(value="/register")
     public ResponseEntity<Employee> registerHandler(@RequestBody Employee employee) throws AccountDuplicateException
     {
         Employee emp = employeeService.register(employee);
+
         if(emp == null)
         {
             throw new AccountDuplicateException("This username has already been registered");
         }
         log.info("Controller Register Method: " + emp.toString());
-        return ResponseEntity.status(200).body(emp);
+        return ResponseEntity.status(201).body(emp);
     }
 
     /*
