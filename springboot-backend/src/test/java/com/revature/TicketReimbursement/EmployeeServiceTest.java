@@ -104,8 +104,32 @@ public class EmployeeServiceTest {
     }
     //
 
-    /*
-     * All other methods are simply returning repostiory methods that have been tested.
-     */
+    @Test
+    public void testFindAccount()
+    {
+        
+    Optional<Employee> emp = Optional.of(new Employee("username", "password", false));
+        
+    // Instructs mock what to do
+    when(employeeRepository.findById(emp.get().getUsername())).thenReturn(emp);
+
+    assertEquals(emp, (employeeService.findAccount(emp.get().getUsername())));
+
+    verify(employeeRepository, times(1)).findById(emp.get().getUsername());
+    }
+
+    @Test
+    public void testFindAccountFail()
+    {
+        
+    Employee emp = new Employee("username", "password", false);
+        
+    // Instructs mock what to do
+    when(employeeRepository.findById(emp.getUsername())).thenReturn(Optional.empty());
+
+    assertEquals(Optional.empty(), (employeeService.findAccount(emp.getUsername())));
+
+    verify(employeeRepository, times(1)).findById(emp.getUsername());
+    }
 
 }

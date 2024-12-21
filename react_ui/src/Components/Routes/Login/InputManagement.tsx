@@ -58,9 +58,11 @@ function InputManagement() {
 
         try
         {
-          const response = await axios.post("http://localhost:8080/register", employeeCheck, {
+          const response = await axios.post("http://localhost:8080/register", 
+          employeeCheck, {
             headers:{"Content-Type": "application/json"}
             })
+          console.log(response.data);
           register(username, password);
           setErrorMessage("registration success");
           navigate("/");

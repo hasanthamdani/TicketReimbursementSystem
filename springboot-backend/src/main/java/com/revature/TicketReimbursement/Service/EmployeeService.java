@@ -2,6 +2,7 @@ package com.revature.TicketReimbursement.Service;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.TicketReimbursement.Entity.Employee;
@@ -15,6 +16,7 @@ import lombok.extern.java.Log;
 @Log
 public class EmployeeService {
     
+    @Autowired
     private final EmployeeRepository employeeRepository;
 
     public Boolean accountExists(String username)
@@ -34,8 +36,12 @@ public class EmployeeService {
         {
            return null;
         }
-        return employeeRepository.save(emp);
+
+        Employee savedEmployee = employeeRepository.save(emp);
+        log.info("Saved Employee: " + savedEmployee.toString());
+        return savedEmployee;
     }
+
     public Optional<Employee> login(String username){
         Optional<Employee> returnedEmp = employeeRepository.findById(username);
         if(!returnedEmp.isPresent())

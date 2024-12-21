@@ -54,5 +54,10 @@ public class TicketService {
          */
         return ticketRepository.findByIdAndUpdateStatus(status, Id);
     }
+
+    public void findById(int i) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findById'");
+    }
     
 }
