@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -31,6 +32,23 @@ public class EmployeeServiceTest {
     @InjectMocks
     private EmployeeService employeeService;
 
+    @Test
+    public void testAccountExists()
+    {
+        String username = "";
+        when(employeeRepository.existsById(username)).thenReturn(true);
+        Assertions.assertTrue(employeeService.accountExists(username));
+        verify(employeeRepository, times(1)).existsById(username);
+    }
+
+    @Test
+    public void testAccountExistsFail()
+    {
+        String username = "";
+        when(employeeRepository.existsById(username)).thenReturn(false);
+        Assertions.assertFalse(employeeService.accountExists(username));
+        verify(employeeRepository, times(1)).existsById(username);
+    }
     @Test
     public void testNewRegister()
     {

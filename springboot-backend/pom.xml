@@ -95,6 +95,13 @@
     <groupId>org.jacoco</groupId>
     <artifactId>jacoco-maven-plugin</artifactId>
     <version>0.8.10</version>
+    <configuration>
+        <excludes> 
+          <exclude>**/Entity/*</exclude>
+          <exclude>**/DataLoader/*</exclude>
+          <exclude>**/Exception/*</exclude>
+        </excludes>
+    </configuration>
     <executions>
         <execution>
             <goals>

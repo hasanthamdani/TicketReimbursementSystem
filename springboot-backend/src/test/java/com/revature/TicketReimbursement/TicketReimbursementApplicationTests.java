@@ -64,8 +64,6 @@ class TicketReimbursementApplicationTests {
 		TicketService bean = applicationContext.getBean(TicketService.class);
 		Assertions.assertNotNull(bean);
 	}
-
-
 	    /**
      * Verify the functionality of Spring MVC, independently of the project requirement endpoints, by sending a request
      * to an arbitrary endpoint.

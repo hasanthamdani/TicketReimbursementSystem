@@ -19,7 +19,7 @@ public class TicketService {
     private TicketRepository ticketRepository;
 
     /*
-     * All methods tested via Data Integration Tests.
+     * All methods tested via Data Repository Tests.
      */
 
     public Ticket createTicket(Ticket t)
@@ -27,7 +27,6 @@ public class TicketService {
         // The React App will format the JSON correctly
         
         Ticket t_saved = ticketRepository.save(t);
-        log.info(t_saved.toString());
         return t_saved;
     }
 
@@ -35,14 +34,19 @@ public class TicketService {
     {
         return ticketRepository.findById(id);
     }
+
+
+    
     public List<Ticket> viewAllPendingTickets()
     {   
         return ticketRepository.findAllPending();
     }
+
     public List<Ticket> viewEmployeeTickets(String username)
     {
         return ticketRepository.findByEmployee_Username(username);
     }
+
     public int updateTicketStatus(String status, Long Id)
     {
         /*
