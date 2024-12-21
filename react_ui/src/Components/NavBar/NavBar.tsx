@@ -39,7 +39,7 @@ function NavBar() {
               </li>
               }
 
-              {isAuth===true && isManager === false &&
+              {isAuth===true &&
                 <>
                   <li className="nav-item">
                   <Link className="nav-link" to="/create">

@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import TicketViewer from './TicketViewer';
 import { Ticket } from '../../Employee/ticketCreator/SmartCreator';
+import { useAuth } from '../../../Context/EmployeeContext';
 
 function SmartViewer() {
     const [allPendingTickets, setAllPendingTickets] = useState<Array<Ticket> | null>(null);
+    const {employee} = useAuth();
     
     useEffect(() => {
             try
@@ -44,7 +46,11 @@ function SmartViewer() {
             {   
             allPendingTickets?.map((Ticket, index) => (
                 <tr key = {Ticket.id}>
-                    <TicketViewer id = {Ticket.id} description = {Ticket.description} status = {Ticket.status} amount = {Ticket.amount} username = {Ticket.employee?.username}/>
+                    {(employee?.username != Ticket.employee?.username) &&
+                    
+                    <TicketViewer id = {Ticket.id} description = {Ticket.description} status = {Ticket.status} amount = {Ticket.amount} username = {Ticket.employee?.username}
+                    />
+                    }
                 </tr>
                 
             ))}
