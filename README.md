@@ -3,8 +3,8 @@
 ## Background 
 
 The Expense Reimbursement System (ERS) will manage the process of reimbursing employees for expenses incurred while on company time. All employees in the company can login and submit requests for 
-reimbursement and view their past tickets and pending requests. Finance managers can log in and view all reimbursement requests and past history for all employees in the company. Similarly, Financial
-Managers, as a type of  Employee, are allowed to creat tickets for themselves. The major responcibility of Finance managers however, is that they are authorized to approve and deny requests for expense reimbursement.
+reimbursement and view their past tickets and pending requests. Financial managers can log in and view all reimbursement requests and past history for all employees in the company. Similarly, Financial
+Managers, as a type of  Employee, are allowed to create tickets for themselves. Most importantly, only financial managers are authorized to approve and deny requests for expense reimbursement.
 This data schema was designed to hold this information and allow for efficient querying
 
 ### Employee
@@ -25,8 +25,6 @@ foreign key (username) references Employee(username)
 ```
 
 # Technical Requirement
-
-## Project must leverage the Spring Boot Framework
 
 The project is built from scratch, and must utilize the following technologies: Spring MVC, Spring Data, Spring Boot, React, Consumption of a RESTful API, hosting the database in Amazon RDS, version management using git, unit tests for
 all back-end features using JUnit and Mockito along with Spring Boot Test, and API testing via Postman.
