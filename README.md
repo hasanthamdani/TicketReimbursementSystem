@@ -26,7 +26,7 @@ foreign key (username) references Employee(username)
 
 # Technical Requirement
 
-The project is built from scratch, and must utilize the following technologies: Spring MVC, Spring Data, Spring Boot, React, consumption of a RESTful API, hosting the database in Amazon RDS, version management using Git, unit tests for
+The project is built from scratch, and must utilize the following technologies: Spring MVC, Spring Data, Spring Boot, React, consumption of a RESTful API, hosting the postgreSQL database in Amazon RDS, version management using Git, unit tests for
 all back-end features using JUnit and Mockito along with Spring Boot Test, and API testing via Postman.
 
 # User Stories
