@@ -5,7 +5,7 @@
 The Expense Reimbursement System (ERS) will manage the process of reimbursing employees for expenses incurred while on company time. All employees in the company can login and submit requests for 
 reimbursement and view their past tickets and pending requests. Financial managers can log in and view all reimbursement requests and past history for all employees in the company. Similarly, Financial
 Managers, as a type of  Employee, are allowed to create tickets for themselves. Most importantly, only financial managers are authorized to approve and deny requests for expense reimbursement.
-This data schema was designed to hold this information and allow for efficient querying
+This data schema was designed to hold this information and allow for efficient querying:
 
 ### Employee
 ```
@@ -26,16 +26,16 @@ foreign key (username) references Employee(username)
 
 # Technical Requirement
 
-The project is built from scratch, and must utilize the following technologies: Spring MVC, Spring Data, Spring Boot, React, Consumption of a RESTful API, hosting the database in Amazon RDS, version management using git, unit tests for
+The project is built from scratch, and must utilize the following technologies: Spring MVC, Spring Data, Spring Boot, React, consumption of a RESTful API, hosting the database in Amazon RDS, version management using Git, unit tests for
 all back-end features using JUnit and Mockito along with Spring Boot Test, and API testing via Postman.
 
 # User Stories
 
 ## 1: The application should allow for a user to register a new account or login to a pre-existing account
 
-As an employee, I should be able to create a new account on the endpoint POST localhost:8080/register. 
-As an employee, i should be able to login to my account on the endpoint GET localhost:8080/login/{username}.
-As a manager, I should be able to only login to a pre-existing account on the database via the endpoint GET localhost:8080/login/{username}.
+As an employee, I should be able to register a new account. 
+As an employee, i should be able to login to my account.
+As a manager, I should be able to only login to a pre-existing account on the database.
 
 ## 2: The application should allow for both managers and employees to submit tickets
 
